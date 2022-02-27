@@ -1,0 +1,109 @@
+<html>
+<head>
+    <title>JSON Representation</title>
+    <script src="angular.min.js"></script>
+    <script src="dataController.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        table {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: left;
+            padding-bottom: 12px;
+            padding-top: 12px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .heading {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: #4CAF50;
+        }
+
+        .table-container {
+            margin-top: 45px;
+        }
+
+        label {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        select {
+            width: 30%;
+            border-radius: 4px;
+            height: 5%;
+        }
+
+        .status {
+            font-size: xx-large;
+        }
+
+        .table-chart-container {
+            float: left; width: 100%; margin-top: 42px;
+        }
+
+        .table-div {
+            float: left; width: 60%;
+        }
+
+        .chart-container {
+            float: right; width: 40% !important;
+        }
+    </style>
+</head>
+
+<body ng-app="ngJsonDataApp" ng-controller="dataController" ng-init='getData()'>
+    <h2 class="heading">Representation of JSON data</h2>
+    <div>
+        <div class="drop-down"><label>Select Floor : </label>
+            <select ng-options="obj as obj.fname for obj in data" ng-change="getTableData()" ng-model="objSelected">
+                <option value="">Select</option>
+            </select></div>
+        <div ng-if='seats'>
+            <div class="table-container heading status">
+                <span><label>Available Seats: {{ availableSeat }}</label></span>
+                <span><label>Booked Seats: {{ bookedSeat }}</label></span>
+                <span><label>Total Seats: {{ totalSeat }}</label></span>
+            </div>
+            <div class="table-chart-container">
+                <div class="table-div">
+                    <table>
+                        <tr>
+                            <th>Seat No</th>
+                            <th>Status</th>
+                            <th>Name</th>
+                        </tr>
+                        <tr ng-repeat="seat in seats">
+                            <td>{{ seat.seatno }}</td>
+                            <td>{{ seat.status }}</td>
+                            <td>{{ seat.name }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!--chart start-->
+                <div class="chart-container" id="piechart"></div>
+                <!--chart end-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

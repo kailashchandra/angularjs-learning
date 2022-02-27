@@ -1,0 +1,40 @@
+<html lang="en" ng-app="customerApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <title>Angular in 20 min</title>
+</head>
+<body>
+    <h1>Angular js in 20 min</h1>
+    <div ng-view></div>
+
+    <script>
+        var app = angular.module('customerApp', ['ngRoute']);
+        app.config(function($routeProvider) {
+            $routeProvider.when('/',
+            {
+                controller: 'Customerscontroller',
+                templateUrl: 'app/views/customers.html'
+            })
+            .when('/orders',
+            {
+                controller: 'OrderController',
+                templateUrl: 'app/views/order.html'
+            })
+        });
+        app.controller('OrderController', function($scope) {
+            $scope.customerId = 5;
+        })
+        app.controller('CustomerController', function($scope) {
+            $scope.customers = [
+                {"id":1, "name": "Kailash", "total": 5.8899},
+                {"id":2, "name": "Yogendra", "total": 6.8899},
+                {"id":3, "name": "Pooja", "total": 15.8899}
+            ];
+        });
+    </script>
+</body>
+</html>

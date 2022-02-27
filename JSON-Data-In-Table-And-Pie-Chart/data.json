@@ -1,0 +1,12 @@
+[
+	{
+		"fname":"ground",
+		"seats": [{ "seatno" : "01", "status":"booked", "name":"Kailash"},
+				 { "seatno" : "02", "status":"booked", "name":"Jagruti"}]
+	},
+	{
+		"fname":"firstFloor",
+		"seats": [{ "seatno" : "01", "status":"booked", "name":"Jagruti"},
+				 { "seatno" : "01", "status":"booked", "name":"Kailash"}]
+	}
+]
